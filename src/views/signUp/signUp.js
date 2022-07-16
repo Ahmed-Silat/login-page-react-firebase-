@@ -5,7 +5,8 @@ function Signup(props) {
 
   const signup = () => {
     signUp(userInfo);
-    // props.login;
+    
+    props.login();
   };
 
   const updateForm = (e, key) => {

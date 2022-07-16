@@ -5,14 +5,14 @@ import Signin from "./views/signIn/signIn";
 import { useState } from "react";
 
 function App() {
-  const [page, setPage] = useState(false);
+  const [screen, setScreen] = useState(false);
   const togglePage = () => {
-    setPage(true);
+    setScreen(true);
   };
   return (
     <div className="App">
       <header className="App-header">
-        {page ? <Signin /> : <Signup login={togglePage} />}
+        {screen ? <Signin /> : <Signup login={togglePage} />}
         {/* <Signup />
         <Signin /> */}
       </header>
