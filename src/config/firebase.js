@@ -1,10 +1,11 @@
 import { initializeApp } from "firebase/app";
-
 import {
+  onAuthStateChanged,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbLwy0j4Hteme9tBA_rspqtYhWMAgOaWI",
@@ -20,22 +21,28 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-function signUp(form) {
-  const { email, password } = form;
+const db = getFirestore(app);
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-      alert("Successful!");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-      // ..
-    });
+async function signUp(form) {
+  const { email, password, name } = form;
+
+  await createUserWithEmailAndPassword(auth, email, password);
+  // .then((userCredential) => {
+  //   // Signed in
+  //   const user = userCredential.user;
+  //   // ...
+  alert("Successful!");
+  await addDoc(collection(db, "users"), {
+    name: name,
+    email: email,
+  });
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   alert(errorMessage);
+  //   // ..
+  // });
 }
 
 function login(email, password) {

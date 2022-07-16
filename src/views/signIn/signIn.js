@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { login } from "../../config/firebase";
 
-function Signin() {
+function Signin(props) {
   const [userInfo, setUserInfo] = useState({});
 
   const signin = () => {
     const { email, password } = userInfo;
 
     login(email, password);
+    props.change();
   };
 
   const updateForm = (e, key) => {

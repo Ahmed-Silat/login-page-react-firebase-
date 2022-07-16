@@ -2,11 +2,17 @@ import { useState } from "react";
 import { signUp } from "../../config/firebase";
 function Signup(props) {
   const [userInfo, setUserInfo] = useState({});
-
-  const signup = () => {
-    signUp(userInfo);
-    
-    props.login();
+  const [loading, setLoading] = useState(false);
+  const signup = async () => {
+    setLoading(true);
+    try {
+      var result = await signUp(userInfo);
+      props.login();
+    } catch (e) {
+      alert(e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const updateForm = (e, key) => {
@@ -32,7 +38,12 @@ function Signup(props) {
         placeholder="Password"
       />
       <br />
-      <button onClick={signup}>Sign Up</button>
+      {loading ? (
+        <img src="https://i.pinimg.com/originals/d7/34/49/d73449313ecedb997822efecd1ee3eac.gif" />
+      ) : (
+        <button onClick={signup}>Sign Up</button>
+      )}
+
       {/* <button onClick={signin}>Login</button> */}
     </div>
   );
