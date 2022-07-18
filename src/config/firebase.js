@@ -23,6 +23,10 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
+function getData(){
+  
+}
+
 async function signUp(form) {
   const { email, password, name } = form;
 
