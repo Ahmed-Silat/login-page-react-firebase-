@@ -3,3 +3,11 @@
     font-size: larger;
     font-weight: 400;
 }
+
+.custom-button:hover {
+    opacity: 0.5;
+}
+
+button:hover {
+    cursor: pointer;
+}
