@@ -35,7 +35,7 @@ async function signUp(form) {
   //   // Signed in
   //   const user = userCredential.user;
   //   // ...
-  alert("Successful!");
+  // alert("Successful!");
   await addDoc(collection(db, "users"), {
     name: name,
     email: email,
@@ -55,7 +55,7 @@ function login(email, password) {
       // Signed in
       const user = userCredential.user;
       // ...
-      alert("Successfully logged in!");
+      // alert("Successfully logged in!");
     })
     .catch((error) => {
       const errorCode = error.code;
